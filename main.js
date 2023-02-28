@@ -68,20 +68,19 @@ const comprar =(id) =>{
     }
 }
 
-
-
 const totalCompra = document.getElementById("carritoCompras");
 
 const totals = () => {
     let total = 0;
-    const viewTotal = document.createElement("div");
+    const carroDeCompras = document.createElement("div");
     div.innerHTML= `<h2>Carrito de compras</h2>
     <h3>El total de la compra es de ${producto.precio} * ${producto.cantidad}<span id="total"></span> </h3>
     <button class="btn colorBoton" id="vaciarCarrito">Vaciar Carrito</button>
 `
-totals.appendChild(div);
-
 }
+
+totalCompra.appendChild(div)
+
 
 
 let formulario = document.getElementById("terminarCompra");
