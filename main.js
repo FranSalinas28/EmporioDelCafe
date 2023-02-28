@@ -32,8 +32,7 @@ const contenedorProductos = document.getElementById("contenedorProductos");
 const mostrarProductos = () => {
 arrayProductos.forEach(producto => {
     const div = document.createElement("div");
-    
-    
+    div.classList.add("col-xl-3", "col-md-6", "col-sm-12");
     div.innerHTML = `<div class="card" style="width: 18rem;">
     <img src="${producto.img}" class="card-img-top imgProductos" alt="${producto.nombre}">
     <div class="card-body">
@@ -68,6 +67,7 @@ const comprar =(id) =>{
         carroDeCompras.push(producto)
     }
 }
+
 
 
 const totalCompra = document.getElementById("carritoCompras");
