@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "quicksand";
+    src: url("../Fonts/quicksand/Quicksand-Bold.otf"); }
+
+   h1 {color:salmon;} 
+
+
+.card {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+
+
+   .btn:hover {  
+background-color: salmon;
+    
+}
+
