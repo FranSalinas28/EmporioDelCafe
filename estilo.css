@@ -2,7 +2,11 @@
     font-family: "quicksand";
     src: url("../Fonts/quicksand/Quicksand-Bold.otf"); }
 
-   h1 {color:salmon;} 
+   h1 {color:rgb(234, 139, 128);
+    margin: 30px;
+
+} 
+
 
 
 .card {

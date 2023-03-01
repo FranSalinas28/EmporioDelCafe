@@ -21,12 +21,11 @@ const cafePapua= new Producto(8, "Papua Nueva Guinea", 12000, "img/café-papua.w
 const arrayProductos = [cafeCuba, cafeEtiopia, cafeColombia, cafePeru, cafeGuatemala, cafeIndonesia, cafePanama, cafePapua];
 
 let carroDeCompras = [];
-let total = 0;
+
 
 if(localStorage.getItem("carritoCompras")){
     carroDeCompras = JSON.parse(localStorage.getItem("carritoCompras"))
 }
-
 
 
 const contenedorProductos = document.getElementById("contenedorProductos");
@@ -65,23 +64,25 @@ const comprar =(id) =>{
 
     }else{
         const producto = arrayProductos.find(producto => producto.id ===id);
-        carroDeCompras.push(producto)
+        carroDeCompras.push(producto);
     }
+
+    calcularTotal()
+
+    localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
+
 }
 
-const totalCompra = document.getElementById("carritoCompras");
+const total = document.getElementById("total");
 
-const totals = () => {
-    let total = 0;
-    const carroDeCompras = document.createElement("div");
-    carritoCompras.innerHTML= `<h2>Carrito de compras</h2>
-    <h3>El total de la compra es de ${producto.precio} * ${producto.cantidad}<span id="total"></span> </h3>
-    <button class="btn colorBoton" id="vaciarCarrito">Vaciar Carrito</button>
-`
+const calcularTotal = () => {
+    let totalCompra = 0;
+    carroDeCompras.forEach(producto => {
+        totalCompra += producto.precio * producto.cantidad;
+        
+    })
+    total.innerHTML = `: $${totalCompra}`;
 }
-
-totalCompra.appendChild(div)
-
 
 
 let formulario = document.getElementById("terminarCompra");
@@ -89,6 +90,13 @@ formulario.addEventListener("submit", validarFormulario);
 
 function validarFormulario(e) {
     e.preventDefault();
+
+    formulario.reset
+    
+
+    localStorage.setItem("formulario", JSON.stringify(terminarCompra))
+
+    localStorage.clear();
 
 }
 
