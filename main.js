@@ -27,6 +27,8 @@ if(localStorage.getItem("carritoCompras")){
     carroDeCompras = JSON.parse(localStorage.getItem("carritoCompras"))
 }
 
+
+
 const contenedorProductos = document.getElementById("contenedorProductos");
 
 const mostrarProductos = () => {
@@ -44,7 +46,6 @@ arrayProductos.forEach(producto => {
 
 contenedorProductos.appendChild(div);
 
-
 const boton = document.getElementById(`boton${producto.id}`);
 boton.addEventListener("click", () => {
     comprar(producto.id);
@@ -58,7 +59,7 @@ mostrarProductos ()
 
 
 const comprar =(id) =>{
-    const enCarrito = carroDeCompras.find (producto => producto.id === id);
+    const enCarrito = carroDeCompras.find(producto => producto.id === id);
     if(enCarrito) {
         enCarrito.cantidad++;
 
@@ -73,7 +74,7 @@ const totalCompra = document.getElementById("carritoCompras");
 const totals = () => {
     let total = 0;
     const carroDeCompras = document.createElement("div");
-    div.innerHTML= `<h2>Carrito de compras</h2>
+    carritoCompras.innerHTML= `<h2>Carrito de compras</h2>
     <h3>El total de la compra es de ${producto.precio} * ${producto.cantidad}<span id="total"></span> </h3>
     <button class="btn colorBoton" id="vaciarCarrito">Vaciar Carrito</button>
 `
