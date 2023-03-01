@@ -1,12 +1,16 @@
 @font-face {
     font-family: "quicksand";
-    src: url("../Fonts/quicksand/Quicksand-Bold.otf"); }
+    src: url("/Fonts/quicksand/Quicksand-Bold.otf"); }
 
    h1 {color:rgb(234, 139, 128);
     margin: 30px;
 
 } 
 
+.contenedorImg{
+    display: flex;
+    align-self: center;
+}
 
 
 .card {
@@ -34,4 +38,13 @@ background-color: salmon;
 
 .terminarCompra{
     padding: 1rem ;
+}
+
+
+h3{
+    color:rgb(234, 139, 128);
+}
+
+footer{
+    margin: 20px;
 }

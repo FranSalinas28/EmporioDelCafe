@@ -81,18 +81,16 @@ const calcularTotal = () => {
         totalCompra += producto.precio * producto.cantidad;
         
     })
-    total.innerHTML = `: $${totalCompra}`;
+    total.innerHTML = `$${totalCompra}`;
 }
 
 
-let formulario = document.getElementById("terminarCompra");
+let formulario = document.getElementById("terminarCompra").reset;
 formulario.addEventListener("submit", validarFormulario);
 
 function validarFormulario(e) {
     e.preventDefault();
 
-    formulario.reset
-    
 
     localStorage.setItem("formulario", JSON.stringify(terminarCompra))
 
