@@ -1,0 +1,10 @@
+[
+    {"id": 1, "nombre":"Cuba", "precio": 9000, "img": "img/café-cuba.webp", "cantidad": 1},
+    {"id": 2, "nombre":"Etiopia", "precio": 8000, "img": "img/café-etiopia.webp", "cantidad": 1},
+    {"id": 3, "nombre":"Colombia", "precio": 7000, "img": "img/café-colombia.webp", "cantidad": 1},
+    {"id": 4, "nombre":"Perú", "precio": 8990, "img": "img/café-peru.webp", "cantidad": 1},
+    {"id": 5, "nombre":"Guatemala", "precio": 7500, "img": "img/café-guatemala.webp", "cantidad": 1},
+    {"id": 6, "nombre":"Indonesia", "precio": 10500, "img": "img/café-indonesia.webp", "cantidad": 1},
+    {"id": 7, "nombre":"Panamá", "precio": 8900, "img": "img/café-panamá.webp", "cantidad": 1},
+    {"id": 8, "nombre":"Papua Nueva Guinea", "precio": 12000, "img": "img/café-papua.webp", "cantidad": 1}
+  ]

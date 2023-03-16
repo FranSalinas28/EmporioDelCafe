@@ -1,25 +1,4 @@
 
-class Producto {
-    constructor(id, nombre, precio, img) {
-    this.id = id;
-    this.nombre = nombre;
-    this.precio = precio;
-    this.img = img;
-    this.cantidad = 1;
-    }
-}
-
-const cafeCuba = new Producto (1, "Cuba", 9000, "img/café-cuba.webp");
-const cafeEtiopia = new Producto (2, "Etiopia", 8000, "img/café-etiopia.webp");
-const cafeColombia = new Producto (3, "Colombia", 7000, "img/café-colombia.webp");
-const cafePeru = new Producto (4, "Perú", 8990, "img/café-peru.webp");
-const cafeGuatemala = new Producto(5, "Guatemala", 7500, "img/café-guatemala.webp");
-const cafeIndonesia = new Producto(6, "Indonesia", 10500, "img/café-indonesia.webp");
-const cafePanama = new Producto(7, "Panamá", 8900, "img/café-panamá.webp");
-const cafePapua= new Producto(8, "Papua Nueva Guinea", 12000, "img/café-papua.webp");
-
-const arrayProductos = [cafeCuba, cafeEtiopia, cafeColombia, cafePeru, cafeGuatemala, cafeIndonesia, cafePanama, cafePapua];
-
 let carroDeCompras = [];
 
 
@@ -27,11 +6,21 @@ if(localStorage.getItem("carritoCompras")){
     carroDeCompras = JSON.parse(localStorage.getItem("carritoCompras"))
 }
 
-
 const contenedorProductos = document.getElementById("contenedorProductos");
 
-const mostrarProductos = () => {
-arrayProductos.forEach(producto => {
+const listadoProductos = "json/productos.json";
+
+setInterval(reloj, 1000);
+
+function reloj() {
+  const hora = new Date();
+  document.getElementById("horita").innerHTML = hora.toLocaleTimeString();
+}
+
+    fetch(listadoProductos)
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+datos.forEach(producto => {
     const div = document.createElement("div");
     div.classList.add("col-xl-3", "col-md-6", "col-sm-12");
     div.innerHTML = `<div class="card" style="width: 18rem;">
@@ -44,18 +33,24 @@ arrayProductos.forEach(producto => {
   </div>`
 
 contenedorProductos.appendChild(div);
+    
 
 const boton = document.getElementById(`boton${producto.id}`);
 boton.addEventListener("click", () => {
-    comprar(producto.id);
+   
+    Toastify({
+        text: "Añadido al carrito",
+        duration: 3000,
+        style:{
+            background: "linear-gradient(to right, #FF96D1, #FEC299)"
+        }
+
+
+        }).showToast();
+    comprar(producto.id); })
+
 })
-
-
-})
-}
-
-mostrarProductos ()
-
+}) 
 
 const comprar =(id) =>{
     const enCarrito = carroDeCompras.find(producto => producto.id === id);
@@ -85,7 +80,7 @@ const calcularTotal = () => {
 }
 
 
-let formulario = document.getElementById("terminarCompra").reset;
+let formulario = document.getElementById("terminarCompra");
 formulario.addEventListener("submit", validarFormulario);
 
 function validarFormulario(e) {
@@ -98,4 +93,19 @@ function validarFormulario(e) {
 
 }
 
+const botonFinal = document.getElementById("botonFinal");
+botonFinal.addEventListener("click", () => {
+    Swal.fire({
+        title: "Gracias por cotizar",
+        text: "En el emporio",
+        icon: "sucess",
+        imageUrl: "https://placekitten.com/200/286",
+        confirmButtonText: "bai",
+
+
+    });
+})
+
+
+///Agregar vaciar carrito ! con el codigo de quitar fideos
 
