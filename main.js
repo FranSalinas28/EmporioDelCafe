@@ -29,15 +29,19 @@ datos.forEach(producto => {
       <p class="card-title">${producto.nombre}</p>
       <p class="card-text">Precio: ${producto.precio}</p>
       <button class="btn btn-dark" id="boton${producto.id}">Agregar al carrito</button>
+      <div class="m-4">
+        <button class="btn btn-dark" id="aumentar${producto.id}">+</button>
+        <p class="text-center"> ${producto.cantidad} </p>
+        <button class="btn btn-dark " id="disminuir${producto.id}">-</button>
+        </div>
     </div>
   </div>`
 
 contenedorProductos.appendChild(div);
-    
+
 
 const boton = document.getElementById(`boton${producto.id}`);
 boton.addEventListener("click", () => {
-   
     Toastify({
         text: "Añadido al carrito",
         duration: 3000,
@@ -47,12 +51,42 @@ boton.addEventListener("click", () => {
 
 
         }).showToast();
-    comprar(producto.id); })
+    comprar(producto.id, datos); })
+
+
+//SUMAR RESTAR
+    const aumentar = document.getElementById(`aumentar${producto.id}`)
+aumentar.addEventListener("click", () => {
+  aumentarProducto(producto.id);
+})
+
+const disminuir = document.getElementById(`disminuir${producto.id}`)
+disminuir.addEventListener("click", () => {
+  disminuirProducto(producto.id);
+})
+
+calcularTotal()
 
 })
 }) 
 
-const comprar =(id) =>{
+const aumentarProducto = (id, arrayProductos) => {
+    const producto = carroDeCompras.find((producto) => producto.id === id);
+    producto.cantidad++;
+    localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
+    calcularTotal;
+  }
+  
+  const disminuirProducto = (id, arrayProductos) => {
+    const producto = carroDeCompras.find((producto) => producto.id === id);
+    producto.cantidad--;
+    localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
+calcularTotal();    
+}
+    
+//AÑADIR AL CARRO  
+
+const comprar =(id, arrayProductos) =>{
     const enCarrito = carroDeCompras.find(producto => producto.id === id);
     if(enCarrito) {
         enCarrito.cantidad++;
@@ -63,10 +97,11 @@ const comprar =(id) =>{
     }
 
     calcularTotal()
-
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
 
 }
+
+//TOTAL
 
 const total = document.getElementById("total");
 
@@ -80,6 +115,21 @@ const calcularTotal = () => {
 }
 
 
+// VACIAR CARRO
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+
+vaciarCarrito.addEventListener("click", () => {
+    vaciar();
+      }  
+  )
+
+const vaciar = () => {
+    carroDeCompras = [];
+    localStorage.clear();
+    calcularTotal()
+}
+
+//COTI. ENVIADA
 let formulario = document.getElementById("terminarCompra");
 formulario.addEventListener("submit", validarFormulario);
 
@@ -88,7 +138,6 @@ function validarFormulario(e) {
 
 
     localStorage.setItem("formulario", JSON.stringify(terminarCompra))
-
     localStorage.clear();
 
 }
@@ -104,8 +153,6 @@ botonFinal.addEventListener("click", () => {
 
 
     });
+    vaciar()
 })
-
-
-///Agregar vaciar carrito ! con el codigo de quitar fideos
 
