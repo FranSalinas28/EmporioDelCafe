@@ -30,9 +30,9 @@ datos.forEach(producto => {
       <p class="card-text">Precio: ${producto.precio}</p>
       <button class="btn btn-dark" id="boton${producto.id}">Agregar al carrito</button>
       <div class="m-4">
-        <button class="btn btn-dark" id="aumentar${producto.id}">+</button>
-        <p class="text-center"> ${producto.cantidad} </p>
-        <button class="btn btn-dark " id="disminuir${producto.id}">-</button>
+        <button class="btn btn-control" id="aumentar${producto.id}">+</button>
+        <p class="text-center" id="cantidad${producto.id}">  </p>
+        <button class="btn btn-control" id="disminuir${producto.id}">-</button>
         </div>
     </div>
   </div>`
@@ -60,6 +60,7 @@ aumentar.addEventListener("click", () => {
   aumentarProducto(producto.id);
 })
 
+calcularTotal()
 const disminuir = document.getElementById(`disminuir${producto.id}`)
 disminuir.addEventListener("click", () => {
   disminuirProducto(producto.id);
@@ -74,12 +75,16 @@ const aumentarProducto = (id, arrayProductos) => {
     const producto = carroDeCompras.find((producto) => producto.id === id);
     producto.cantidad++;
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
-    calcularTotal;
+    const cantidad = document.getElementById("cantidad" + id)
+    cantidad.innerText = producto.cantidad;
+    calcularTotal();
   }
   
   const disminuirProducto = (id, arrayProductos) => {
     const producto = carroDeCompras.find((producto) => producto.id === id);
     producto.cantidad--;
+    const cantidad = document.getElementById("cantidad" + id)
+    cantidad.innerText = producto.cantidad;
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
 calcularTotal();    
 }
@@ -90,6 +95,8 @@ const comprar =(id, arrayProductos) =>{
     const enCarrito = carroDeCompras.find(producto => producto.id === id);
     if(enCarrito) {
         enCarrito.cantidad++;
+       
+        
 
     }else{
         const producto = arrayProductos.find(producto => producto.id ===id);
@@ -101,7 +108,10 @@ const comprar =(id, arrayProductos) =>{
 
 }
 
+
+
 //TOTAL
+
 
 const total = document.getElementById("total");
 

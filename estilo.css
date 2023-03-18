@@ -40,6 +40,10 @@ background-color: salmon;
     padding: 1rem ;
 }
 
+.btn-control{
+    width: 100%;
+}
+
 
 h3{
     color:rgb(234, 139, 128);
