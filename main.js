@@ -99,14 +99,14 @@ const verCarrito = () => {
     <div class="card-body">
       <p class="card-title">${producto.nombre}</p>
       <p class="card-text">Precio: ${producto.precio}</p>
-      <button class="btn btn-dark" id="eliminar${producto.id}">Eliminar</button>
       <div class="m-4">
-        <p class="text-center" id="cantidad${producto.id}">  </p>
+        <p class="text-center" id="cantidad">${producto.cantidad}</p>
+       
         
         </div>
     </div>
   </div>`
-    carritoCointainer.appendChild(card);
+carritoCointainer.appendChild(card);
 
 })}
 
@@ -117,7 +117,7 @@ const aumentarProducto = (id, arrayProductos) => {
     const cantidad = document.getElementById("cantidad" + id)
     cantidad.innerText = producto.cantidad;
 
-    calcularTotal();
+calcularTotal();
     
   }
   
@@ -128,6 +128,7 @@ const aumentarProducto = (id, arrayProductos) => {
     cantidad.innerText = producto.cantidad;
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
 calcularTotal();  
+
 
 }
     
@@ -166,6 +167,8 @@ const vaciarCarrito = document.getElementById("vaciarCarrito");
 
 vaciarCarrito.addEventListener("click", () => {
     vaciar();
+
+    verCarrito()
       }  
   )
 
@@ -187,6 +190,8 @@ function validarFormulario(e) {
     localStorage.clear();
 
 }
+
+
 
 const botonFinal = document.getElementById("botonFinal");
 botonFinal.addEventListener("click", () => {
