@@ -54,22 +54,61 @@ boton.addEventListener("click", () => {
     comprar(producto.id, datos); })
 
 
+
+    
+
 //SUMAR RESTAR
+
+
     const aumentar = document.getElementById(`aumentar${producto.id}`)
 aumentar.addEventListener("click", () => {
   aumentarProducto(producto.id);
 })
 
-calcularTotal()
+
 const disminuir = document.getElementById(`disminuir${producto.id}`)
 disminuir.addEventListener("click", () => {
   disminuirProducto(producto.id);
 })
 
+
+
 calcularTotal()
 
 })
 }) 
+
+
+
+//MOSTRAR CARRITO
+const carritoCointainer = document.getElementById("carritoCointainer");
+const mostrarCarrito = document.getElementById("mostrarCarrito");
+
+mostrarCarrito.addEventListener("click", () => {
+  verCarrito();
+});
+
+const verCarrito = () => {
+  carritoCointainer.innerHTML = "";
+  carroDeCompras.forEach(producto => {
+    const card = document.createElement("div");
+    card.classList.add("col-xl-3", "col-md-6", "col-sm-12");
+    card.innerHTML =
+    `<div class="card" style="width: 18rem;">
+    <img src="${producto.img}" class="card-img-top imgProductos" alt="${producto.nombre}">
+    <div class="card-body">
+      <p class="card-title">${producto.nombre}</p>
+      <p class="card-text">Precio: ${producto.precio}</p>
+      <button class="btn btn-dark" id="eliminar${producto.id}">Eliminar</button>
+      <div class="m-4">
+        <p class="text-center" id="cantidad${producto.id}">  </p>
+        
+        </div>
+    </div>
+  </div>`
+    carritoCointainer.appendChild(card);
+
+})}
 
 const aumentarProducto = (id, arrayProductos) => {
     const producto = carroDeCompras.find((producto) => producto.id === id);
@@ -77,7 +116,9 @@ const aumentarProducto = (id, arrayProductos) => {
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
     const cantidad = document.getElementById("cantidad" + id)
     cantidad.innerText = producto.cantidad;
+
     calcularTotal();
+    
   }
   
   const disminuirProducto = (id, arrayProductos) => {
@@ -86,7 +127,8 @@ const aumentarProducto = (id, arrayProductos) => {
     const cantidad = document.getElementById("cantidad" + id)
     cantidad.innerText = producto.cantidad;
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
-calcularTotal();    
+calcularTotal();  
+
 }
     
 //AÑADIR AL CARRO  
@@ -95,9 +137,6 @@ const comprar =(id, arrayProductos) =>{
     const enCarrito = carroDeCompras.find(producto => producto.id === id);
     if(enCarrito) {
         enCarrito.cantidad++;
-       
-        
-
     }else{
         const producto = arrayProductos.find(producto => producto.id ===id);
         carroDeCompras.push(producto);
@@ -107,9 +146,6 @@ const comprar =(id, arrayProductos) =>{
     localStorage.setItem("carritoCompras", JSON.stringify(carroDeCompras));
 
 }
-
-
-
 //TOTAL
 
 
